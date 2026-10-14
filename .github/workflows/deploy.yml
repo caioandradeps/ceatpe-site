@@ -25,6 +25,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ./  # a conta FTP de deploy (ceatpegit) já abre dentro do public_html
+          state-name: .deploy-ceatpe.json
           exclude: |
             **/.git*
             **/.git*/**
