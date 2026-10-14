@@ -120,7 +120,7 @@
       while (track.scrollWidth < m.clientWidth * 1.2 && guard++ < 12) items.forEach(function (li) { var c = li.cloneNode(true); c.setAttribute('aria-hidden', 'true'); $$('a', c).forEach(function (a) { a.tabIndex = -1; }); track.appendChild(c); });
       $$('li', track).forEach(function (li) { var c = li.cloneNode(true); c.setAttribute('aria-hidden', 'true'); $$('a', c).forEach(function (a) { a.tabIndex = -1; }); track.appendChild(c); });
       var w = track.scrollWidth / 2;
-      m.style.setProperty('--dur', Math.max(80, w / 14) + 's'); // ~14px por segundo: bem calmo
+      m.style.setProperty('--dur', Math.max(60, w / 20) + 's'); // ~20px por segundo
       m.classList.add('is-running');
     };
     if (document.readyState === 'complete') fill(); else window.addEventListener('load', fill);
