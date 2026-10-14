@@ -1,0 +1,31 @@
+SITE CEATPE: COMO INSTALAR NO HOSTINGER
+=======================================
+
+1. Banco de dados
+   hPanel > Bancos de dados > Gerenciamento de MySQL.
+   Crie um banco e um usuário. Anote o nome do banco, o usuário e a senha.
+
+2. Arquivos
+   hPanel > Gerenciador de arquivos > public_html.
+   Envie o conteúdo deste zip (as pastas e os arquivos, não a pasta do zip) e extraia.
+
+3. Instalação
+   Abra https://SEU-DOMINIO/instalar.php
+   Preencha os dados do banco (host: localhost) e crie o e-mail e a senha do painel.
+
+4. Segurança
+   Apague o arquivo instalar.php do servidor.
+   Ative o SSL grátis do domínio no hPanel (o site força https).
+
+5. Painel
+   https://SEU-DOMINIO/admin/
+   Em "Informações do site", preencha e-mail, telefone, endereço, redes sociais,
+   chave PIX e CNPJ. Cada informação só aparece no site depois de preenchida.
+
+Pastas
+- admin/    painel administrativo
+- assets/   estilos, fontes, ícones e logos (design system CEATPE)
+- inc/      código interno (bloqueado para acesso direto)
+- uploads/  imagens enviadas pelo painel (precisa permitir escrita, 755)
+
+Requisitos: PHP 8.1 ou mais novo e MySQL/MariaDB (padrão do Hostinger).

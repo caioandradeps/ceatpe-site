@@ -1,0 +1,7 @@
+# Criado pelo instalador no servidor (senha do banco)
+inc/config.php
+# Imagens enviadas pelo painel ficam só no servidor
+uploads/*
+!uploads/.htaccess
+.DS_Store
+Thumbs.db

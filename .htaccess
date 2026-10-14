@@ -1,0 +1,44 @@
+# CEATPE — rotas amigáveis e proteção (Hostinger / LiteSpeed / Apache)
+Options -Indexes
+DirectoryIndex index.php
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Força HTTPS (o SSL grátis do Hostinger precisa estar ativo)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Bloqueia acesso direto às pastas internas
+RewriteRule ^inc/ - [F,L]
+
+RewriteRule ^sobre/?$ sobre.php [L,QSA]
+RewriteRule ^projetos/?$ projetos.php [L,QSA]
+RewriteRule ^projetos/([a-z0-9-]+)/?$ projeto.php?slug=$1 [L,QSA]
+RewriteRule ^eventos/?$ eventos.php [L,QSA]
+RewriteRule ^eventos/([a-z0-9-]+)/?$ evento.php?slug=$1 [L,QSA]
+RewriteRule ^blog/?$ blog.php [L,QSA]
+RewriteRule ^blog/([a-z0-9-]+)/?$ post.php?slug=$1 [L,QSA]
+RewriteRule ^apoie/?$ apoie.php [L,QSA]
+RewriteRule ^contato/?$ contato.php [L,QSA]
+RewriteRule ^privacidade/?$ privacidade.php [L,QSA]
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+RewriteRule ^robots\.txt$ robots.php [L]
+</IfModule>
+
+ErrorDocument 404 /404.php
+
+<FilesMatch "^(router\.php|config\.php|LEIA-ME\.txt|.*\.md)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\.(woff2|png|jpg|jpeg|webp|svg|css|js)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>

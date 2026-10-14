@@ -1,0 +1,35 @@
+name: Deploy no Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checar sintaxe do PHP
+        run: find . -name "*.php" -not -path "./.git/*" -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Enviar por FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_DIR || './public_html/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            router.php
+            LEIA-ME.txt
+            inc/config.php
+            uploads/**
