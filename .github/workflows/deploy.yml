@@ -32,4 +32,3 @@ jobs:
             router.php
             LEIA-ME.txt
             inc/config.php
-            uploads/**
